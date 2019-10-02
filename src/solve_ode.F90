@@ -4,13 +4,14 @@ program solve_ode
 
   implicit none
 
+  integer        :: i
   real           :: x(11)
   real           :: y(11)
   real, external :: func
 
-  x = ([0 + i * 0.1], i=0, i=10)
+  x = [ (i*0.1, i=0, 10) ]
 
-  y = euler_method(init_y=1, init_x=0, end_x=1, nstep=10, func)
+  y = euler_method(init_y=1., init_x=0., end_x=1., nstep=10, f=func)
 
   write(6, '("Euler method:")')
   write(6, '("x = ", 11F9.5)') x
@@ -25,7 +26,7 @@ pure function func(x, y) result(res)
 
   real             :: re
 
-  res = y - (x / y)
+  res = y - (2 * x / y)
 
 end function
 
