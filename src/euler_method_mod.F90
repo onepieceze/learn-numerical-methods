@@ -1,8 +1,9 @@
 module euler_method_mod
 
   !! Euler method:
-  !!   solution: / yn+1 = yn + f(xn + yn) * h       (n=1,2,3....n)
-  !!             \  y0  = y(a)
+  !!   equation: / yn+1 = yn + f(xn + yn) * h       (n=1,2,3....n)
+  !!             |
+  !!             \ y0  = y(a)
   !!   error   : O(h2)
 
   implicit none
@@ -19,14 +20,14 @@ contains
     real    , intent(in) :: init_x
     real    , intent(in) :: end_x
     integer , intent(in) :: nstep
-
     real    , external   :: f
-
-    real                 :: y(0:nstep)
 
     integer              :: n
     real                 :: h
+    real                 :: y(0:nstep)
     real                 :: x(0:nstep)
+
+
 
     h = (end_x - init_x)/nstep
 

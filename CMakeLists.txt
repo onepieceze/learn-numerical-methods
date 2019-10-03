@@ -11,6 +11,7 @@ set (CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/bin")
 
 set (sources
   src/euler_method_mod.F90
+  src/improved_euler_method_mod.F90
 )
 
 add_library (numerical_method SHARED ${sources})
