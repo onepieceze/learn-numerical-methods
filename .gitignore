@@ -1,3 +1,7 @@
+# Documents
+bin
+build
+
 # Prerequisites
 *.d
 

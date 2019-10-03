@@ -7,17 +7,15 @@ module improved_euler_method_mod
   !!            \ yn+1 = yn + h/2[f(xn, yn) + f(xn+1, yxn+1)]
   !!   error   : O(h3)
 
-  use euler_method_mod
-
   implicit none
 
   private
 
-  public :: imporoved_euler_method
+  public :: improved_euler_method
 
 contains
 
-  function improved_euler_method(init_y, init_x, end_x, nstep, f) res(y)
+  function improved_euler_method(init_y, init_x, end_x, nstep, f) result(y)
 
     real   , intent(in) :: init_y
     real   , intent(in) :: init_x
@@ -31,8 +29,6 @@ contains
     real                :: x(0:nstep)
     real                :: y_ba(0:nstep)
 
-    y_ba = euler_method(init_y, init_x, end_x, nstep, f)
-
     h = (end_x - init_x)/nstep
 
     x(0) = init_x
@@ -40,7 +36,8 @@ contains
 
     do n=0, nstep-1
       x(n+1) = x(n) + h
-      y(n+1) = y(n) + h / 2 * ((f(x(n), y(n)) + f(x(n+1), y_ba(xn+1))))
+      y_ba(n+1) = y(n) + h * f(x(n), y(n))
+      y(n+1) = y(n) + h / 2 * ((f(x(n), y(n)) + f(x(n+1), y_ba(n+1))))
     end do
       
   end function improved_euler_method
