@@ -1,10 +1,12 @@
 module improved_euler_method_mod
 
   !! Improved Euler method:
+  !!
   !!   equation:  ____
   !!            / yn+1 = yn + f(xn, yn)h
   !!            |                                     ____
   !!            \ yn+1 = yn + h/2[f(xn, yn) + f(xn+1, yn+1)]
+  !!
   !!   error   : O(h3)
 
   implicit none

@@ -2,6 +2,7 @@ program solve_ode
 
   use euler_method_mod
   use improved_euler_method_mod
+  use runge_kutta_O2_mod
 
   implicit none
 
@@ -14,6 +15,11 @@ program solve_ode
 
   write(6, '("x = ", 11F9.5)') x
 
+  y = x * sqrt(2 - x)
+
+  write(6, '("Analytical solution:")')
+  write(6, '("y = ", 11F9.5)') y
+
   y = euler_method(init_y=1., init_x=0., end_x=1., nstep=10, f=func)
 
   write(6, '("Euler method:")')
@@ -24,6 +30,10 @@ program solve_ode
   write(6, '("Improved Euler method:")')
   write(6, '("y = ", 11F9.5)') y
 
+  y = runge_kutta_O2(init_y=1., init_x=0., end_x=1., nstep=10, f=func)
+
+  write(6, '("Second Order Runge Kutta:")')
+  write(6, '("y = ", 11F9.5)') y
 
 end program solve_ode
 
@@ -37,6 +47,3 @@ pure function func(x, y) result(res)
   res = y - (2 * x / y)
 
 end function
-
-
-  
