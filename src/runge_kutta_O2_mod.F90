@@ -18,6 +18,8 @@ module runge_kutta_O2_mod
 
   private
 
+  public :: runge_kutta_O2
+
 contains
 
   function runge_kutta_O2(init_y, init_x, end_x, nstep, f) result(y)
@@ -30,6 +32,7 @@ contains
 
     integer             :: n
     real                :: h
+    real                :: k1, k2
     real                :: w1, w2, p
     real                :: x(0:nstep)
     real                :: y(0:nstep)
@@ -43,7 +46,7 @@ contains
     do n=0, nstep-1
       k1 = f(x(n), y(n))
       k2 = f(x(n)+p*h, y(n) + p*h*k1)
-      y(n+1) = yn + h*(w1*k1, w2*k2)
+      y(n+1) = y(n) + h*(w1*k1 + w2*k2)
       x(n+1) = x(n) + h
     end do
 

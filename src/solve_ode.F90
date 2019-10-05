@@ -15,7 +15,7 @@ program solve_ode
 
   write(6, '("x = ", 11F9.5)') x
 
-  y = x * sqrt(2 - x)
+  y = sqrt(1 + 2*x)
 
   write(6, '("Analytical solution:")')
   write(6, '("y = ", 11F9.5)') y
